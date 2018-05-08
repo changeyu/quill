@@ -162,6 +162,15 @@ Keyboard.DEFAULTS = {
         this.quill.format('indent', '-1', Quill.sources.USER);
       }
     },
+   //  链接BACKSPACE选中
+    'link backspace': {
+        key: Keyboard.keys.BACKSPACE,
+        collapsed: true,
+        format: ['link'],
+        handler: function (range, context) {
+           this.quill.setSelection(context.offset - context.suffix, context.offset + context.suffix + context.prefix);
+        }
+     },
     'outdent backspace': {
       key: Keyboard.keys.BACKSPACE,
       collapsed: true,
