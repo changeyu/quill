@@ -1,20 +1,20 @@
-import Parchment from 'parchment';
-import { sanitize } from '../formats/link';
+import BlockEmbed from '../blots/embed';
+import Link from '../formats/link';
 
 const ATTRIBUTES = [
-  'alt',
   'height',
   'width'
 ];
 
 
-class Image extends Parchment.Embed {
+class Video extends BlockEmbed {
   static create(value) {
-    console.log(value)
     let node = super.create(value);
-    if (typeof value === 'string') {
-      node.setAttribute('src', this.sanitize(value));
-    }
+    node.setAttribute('frameborder', '0');
+    node.setAttribute('allowfullscreen', true);
+    node.setAttribute('src', this.sanitize(value));
+    node.style.display = 'inline-block'
+    
     return node;
   }
 
@@ -27,12 +27,8 @@ class Image extends Parchment.Embed {
     }, {});
   }
 
-  static match(url) {
-    return /\.(jpe?g|gif|png)$/.test(url) || /^data:image\/.+;base64/.test(url);
-  }
-
   static sanitize(url) {
-    return sanitize(url, ['http', 'https', 'data']) ? url : '//:0';
+    return Link.sanitize(url);
   }
 
   static value(domNode) {
@@ -51,8 +47,9 @@ class Image extends Parchment.Embed {
     }
   }
 }
-Image.blotName = 'image';
-Image.tagName = 'IMG';
+Video.blotName = 'videoinlineblock';
+Video.className = 'ql-video';
+Video.tagName = 'IFRAME';
 
 
-export default Image;
+export default Video;

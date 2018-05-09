@@ -39,6 +39,7 @@ SnowTheme.DEFAULTS = extend(true, {}, BaseTheme.DEFAULTS, {
     toolbar: {
       handlers: {
         link: function(value) {
+          // 当前是否已经添加过链接地址
           if (value) {
             let range = this.quill.getSelection();
             if (range == null || range.length == 0) return;
@@ -47,6 +48,7 @@ SnowTheme.DEFAULTS = extend(true, {}, BaseTheme.DEFAULTS, {
               preview = 'mailto:' + preview;
             }
             let tooltip = this.quill.theme.tooltip;
+            console.log(preview)
             tooltip.edit('link', preview);
           } else {
             this.quill.format('link', false);

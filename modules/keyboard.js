@@ -199,7 +199,7 @@ Keyboard.DEFAULTS = {
         let prefix = context.prefix.length
         let suffix = context.suffix.length
         let offset = context.offset
-        this.quill.setSelection(offset - prefix, prefix + suffix, Quill.sources.USER)
+        this.quill.setSelection(range.index - prefix, prefix + suffix, Quill.sources.USER)
       }
     },
     // 不够完善 在选中状态最后一个字符连接时 无法判断
