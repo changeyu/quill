@@ -183,6 +183,52 @@ Keyboard.DEFAULTS = {
         
       }
     },
+    'link backspace': {
+      key: Keyboard.keys.BACKSPACE,
+      // 非选中状态
+      collapsed: true,
+      // shiftKey: null,
+      // metaKey: null,
+      // ctrlKey: null,
+      // altKey: null,
+      format: ['link'],
+      // offset: 0,
+      handler: function (range, context) {
+        console.log(range,context)
+        // 非selection状态
+        let prefix = context.prefix.length
+        let suffix = context.suffix.length
+        let offset = context.offset
+        this.quill.setSelection(offset - prefix, prefix + suffix, Quill.sources.USER)
+      }
+    },
+    // 不够完善 在选中状态最后一个字符连接时 无法判断
+    // 'link backspace': {
+    //   key: Keyboard.keys.BACKSPACE,
+    //   // 非选中状态
+    //   format: ['link'],
+    //   // offset: 0,
+    //   handler: function (range, context) {
+    //     console.log(range,context)
+    //     // 非selection状态
+    //     let prefix = context.prefix.length
+    //     let suffix = context.suffix.length
+    //     let offset = context.offset
+    //     console.log(range.index + suffix)
+    //     if (context.collapsed) {
+    //       this.quill.setSelection(offset - prefix, prefix + suffix, Quill.sources.USER)
+    //     }else{
+    //       // if (context.suffix === ''){
+    //       //   this.quill.deleteText(offset, range.length, Quill.sources.USER)
+    //       //   // deleteText(index: Number, length: Number, source: String = 'api'): Delta
+    //       //   // this.quill.setSelection(range.index - prefix, prefix + suffix + range.length, Quill.sources.USER)
+    //       //   return ;
+    //       // }
+    //       return ;
+    //       this.quill.setSelection(offset - prefix, prefix + suffix + range.length, Quill.sources.USER)
+    //     }
+    //   }
+    // },
     'indent code-block': makeCodeBlockHandler(true),
     'outdent code-block': makeCodeBlockHandler(false),
     'remove tab': {

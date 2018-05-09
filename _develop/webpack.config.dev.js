@@ -109,6 +109,9 @@ module.exports = function (env, arg) {
       new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
+      // 检测host是否一致，导致外网无法访问，可使用以下两个方法解决：
+      // disableHostCheck: true,
+      // host: '127.0.0.1',
       //progress只在命令行用，不在配置文件中配
       contentBase: path.resolve(__dirname, "../dist/"), //网站的根目录为 根目录/dist，如果没有指定，使用process.cwd()函数取当前工作目录，工作目录>npm run dev
       port: 9000, //端口改为9000

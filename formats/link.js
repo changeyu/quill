@@ -3,11 +3,11 @@ import Inline from '../blots/inline';
 
 class Link extends Inline {
   static create(value) {
-    console.log(value)
+    // console.log(value)
     let node = super.create(value);
-    console.log(node)
+    // console.log(node)
     value = this.sanitize(value);
-    console.log(value)
+    // console.log(value)
     node.setAttribute('href', value);
     node.setAttribute('target', '_blank');
     return node;

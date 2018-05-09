@@ -79,7 +79,7 @@
     "url": "https://github.com/quilljs/quill/issues"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config ./_develop/webpack.config.dev.js",
+    "dev": "webpack-dev-server --config ./_develop/webpack.config.dev.js --host 192.168.8.101",
     "build": "webpack --config ./_develop/webpack.config.js",
     "build3": "rm ./dist/* | webpack --config ./_develop/webpack.config.js",
     "build2": "webpack --config ./_develop/webpack.config.js",
