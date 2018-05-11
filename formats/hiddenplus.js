@@ -1,5 +1,5 @@
 import Parchment from 'parchment';
-import Block, { BlockEmbed } from '../blots/block';
+import Block from '../blots/block';
 import Container from '../blots/container';
 
 
@@ -105,7 +105,7 @@ HiddenBox.scope = Parchment.Scope.BLOCK_BLOT;
 HiddenBox.tagName = 'DIV';
 HiddenBox.className = 'hidden-box';
 HiddenBox.defaultChild = 'hidden-item';
-HiddenBox.allowedChildren = [HiddenItem,Block, BlockEmbed, Container];
+HiddenBox.allowedChildren = [HiddenItem];
 
 
 export { HiddenItem, HiddenBox as default };

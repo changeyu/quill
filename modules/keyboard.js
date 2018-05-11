@@ -199,6 +199,11 @@ Keyboard.DEFAULTS = {
         let prefix = context.prefix.length
         let suffix = context.suffix.length
         let offset = context.offset
+        // 判断是否含有图片的链接
+        if (context.format.alt != 'undefined'){
+          this.quill.setSelection(range.index - 1, range.index, Quill.sources.USER)
+          return ;
+        }
         this.quill.setSelection(range.index - prefix, prefix + suffix, Quill.sources.USER)
       }
     },
