@@ -57,6 +57,7 @@ hidden03.onclick = function () {
   // 得到当前焦点
   let range = quill.getSelection(true);
   quill.insertEmbed(range.index, 'video-inline', '//player.bilibili.com/player.html?aid=23160898&cid=38545098&page=1');
+  // quill.insertEmbed(range.index, 'video-inline', '//player.bilibili.com/player.html?aid=23160898&cid=38545098&page=1');
   quill.setSelection(range.index + 1, Quill.sources.USER);
 }
 
@@ -96,6 +97,35 @@ hidden05.onclick = function () {
     attributes: { width: '100' ,align:"center"}
   }
 ])
+}
+
+hidden06.type = 'button'
+hidden06.value = 'at'
+hidden06.onclick = function () {
+  // 得到当前焦点
+  let range = quill.getSelection(true);
+  console.log(range)
+  let url = 'http://www.baidu.com'
+  // 插入文字
+  let value = prompt('@谁');
+  if (value != ''){
+    value = '@' + value + ' '
+    quill.insertText(range.index, value);
+    quill.formatText(range.index, value.length-1, {'at': url });
+  }
+}
+
+hidden07.type = 'button'
+hidden07.value = 'link'
+hidden07.onclick = function () {
+  // 得到当前焦点
+  let range = quill.getSelection(true);
+  // 插入文字
+  let url = prompt('#地址');
+  if (url != '') {
+    quill.insertText(range.index, '#链接地址',{link:url});
+    // quill.formatText(range.index, 5, 'link',url);
+  }
 }
 
 

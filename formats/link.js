@@ -29,6 +29,7 @@ class Link extends Inline {
 }
 Link.blotName = 'link';
 Link.tagName = 'A';
+Link.className = 'link';
 Link.SANITIZED_URL = 'about:blank';
 Link.PROTOCOL_WHITELIST = ['http', 'https', 'mailto', 'tel'];
 

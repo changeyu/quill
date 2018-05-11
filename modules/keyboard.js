@@ -183,30 +183,31 @@ Keyboard.DEFAULTS = {
         
       }
     },
-    'link backspace': {
-      key: Keyboard.keys.BACKSPACE,
-      // 非选中状态
-      collapsed: true,
-      // shiftKey: null,
-      // metaKey: null,
-      // ctrlKey: null,
-      // altKey: null,
-      format: ['link'],
-      // offset: 0,
-      handler: function (range, context) {
-        console.log(range,context)
-        // 非selection状态
-        let prefix = context.prefix.length
-        let suffix = context.suffix.length
-        let offset = context.offset
-        // 判断是否含有图片的链接
-        if (context.format.alt != 'undefined'){
-          this.quill.setSelection(range.index - 1, range.index, Quill.sources.USER)
-          return ;
-        }
-        this.quill.setSelection(range.index - prefix, prefix + suffix, Quill.sources.USER)
-      }
-    },
+    // 'link backspace': {
+    //   key: Keyboard.keys.BACKSPACE,
+    //   // 非选中状态
+    //   collapsed: true,
+    //   // shiftKey: null,
+    //   // metaKey: null,
+    //   // ctrlKey: null,
+    //   // altKey: null,
+    //   format: ['link','at'],
+    //   // offset: 0,
+    //   handler: function (range, context) {
+    //     console.log(range,context)
+    //     // 非selection状态
+    //     let prefix = context.prefix.length
+    //     let suffix = context.suffix.length
+    //     let offset = context.offset
+    //     // 判断是否含有图片的链接
+    //     if (context.format.alt != undefined){
+    //       this.quill.setSelection(range.index - 1, range.index, Quill.sources.USER)
+    //       return ;
+    //     }
+    //     console.log('context.format.alt')
+    //     this.quill.setSelection(range.index - prefix, prefix + suffix, Quill.sources.USER)
+    //   }
+    // },
     // 不够完善 在选中状态最后一个字符连接时 无法判断
     // 'link backspace': {
     //   key: Keyboard.keys.BACKSPACE,
