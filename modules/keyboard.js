@@ -479,7 +479,10 @@ function handleEnter(range, context) {
   Object.keys(context.format).forEach((name) => {
     if (lineFormats[name] != null) return;
     if (Array.isArray(context.format[name])) return;
-    if (name === 'link') return;
+    if (name === 'link'){
+      console.log('link')
+      return;
+    } 
     this.quill.format(name, context.format[name], Quill.sources.USER);
   });
 }

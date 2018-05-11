@@ -31,7 +31,7 @@ var quill = new Quill('#editor', {
 
 quill.on('text-change', function (delta, oldDelta, source) {
   console.log(quill.editor.delta)
-  console.log(JSON.stringify(quill.editor.delta))
+  // console.log(JSON.stringify(quill.editor.delta))
   // console.log(editor.getElementsByTagName('div')[0].innerHTML)
   outer.innerText = pretty(editor.getElementsByTagName('div')[0].innerHTML)
 });
@@ -76,27 +76,19 @@ hidden05.onclick = function () {
   // 得到当前焦点
   let json = '{"ops":[{"insert":"Hello World!asdf"},{"insert":"\n","attributes":{"hidden":"bullet"}},{"insert":{"image":"http://p1.qhimgs4.com/t012c5eb9785a974f5e.webp"}},{"insert":"\n","attributes":{"hidden":"bullet"}},{"insert":{"video-inline":"//player.bilibili.com/player.html?aid=23160898&cid=38545098&page=1"}},{"insert":"11"},{"insert":"\n","attributes":{"hidden":"bullet"}},{"insert":{"video":"//player.bilibili.com/player.html?aid=23160898&cid=38545098&page=1"}},{"insert":"\n","attributes":{"hidden":"bullet"}}]}'
   let testData = JSON.parse(json.replace(/\n+/g, '\\n'));
-  quill.setContents([{
-    insert: 'Hello',
-    attributes: {align: "left" }
-  }, {
-    insert: 'World',
-    attributes: { bold: true, align: "center"}
-  }, 
-  { insert: "\n", attributes: { align: "center" }},
-  {
-    insert: {
-      image: 'http://p1.qhimgs4.com/t012c5eb9785a974f5e.webp'
-    },
-    attributes: { width: '100' ,align:"center"}
-  },
-  {
-    insert: {
-      image: 'https://i0.hdslb.com/bfs/archive/a45404c76c668b11de6ac335967ab2debf8ad708.jpg'
-    },
-    attributes: { width: '100' ,align:"center"}
-  }
-])
+  quill.setContents([
+    // Unbold and italicize "Gandalf"
+    { retain: 7, attributes: { bold: null, italic: true } },
+
+    // Keep " the " as is
+    { retain: 5 },
+
+    // Insert "White" formatted with color #fff
+    { insert: "White", attributes: { color: '#fff' } },
+
+    // Delete "Grey"
+    { delete: 4 }
+  ])
 }
 
 hidden06.type = 'button'
@@ -124,6 +116,7 @@ hidden07.onclick = function () {
   let url = prompt('#地址');
   if (url != '') {
     quill.insertText(range.index, '#链接地址',{link:url});
+    // this.quill.format('link', value, Emitter.sources.USER);
     // quill.formatText(range.index, 5, 'link',url);
   }
 }

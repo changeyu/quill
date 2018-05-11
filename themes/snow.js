@@ -70,8 +70,10 @@ class SnowTooltip extends BaseTooltip {
     super.listen();
     this.root.querySelector('a.ql-action').addEventListener('click', (event) => {
       if (this.root.classList.contains('ql-editing')) {
+        console.log(this)
         this.save();
       } else {
+        console.log(this)
         this.edit('link', this.preview.textContent);
       }
       event.preventDefault();
